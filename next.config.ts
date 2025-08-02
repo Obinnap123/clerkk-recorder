@@ -1,7 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [],
+    unoptimized: true
+  },
+  turbopack: {
+    rules: {
+      '**/*.{png,jpg,jpeg,gif,svg}': ['asset']
+    }
+  }
 };
 
 export default nextConfig;
