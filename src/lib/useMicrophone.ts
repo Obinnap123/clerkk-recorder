@@ -132,7 +132,12 @@ export function useMicrophone(): UseMicrophoneReturn {
       setIsListening(true);
 
       const audioContext = new (window.AudioContext ||
-        (window as any).webkitAudioContext)();
+        (
+          window as unknown as typeof window & {
+            webkitAudioContext: typeof AudioContext;
+          }
+        ).webkitAudioContext)();
+
       const analyser = audioContext.createAnalyser();
       const microphone = audioContext.createMediaStreamSource(stream);
 
